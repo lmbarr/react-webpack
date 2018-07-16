@@ -4,8 +4,11 @@
   "description": "Boilerplate for React apps",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "prebuild-d": "babel-node mockApi/generateMockData.js",
+    "run-server": "babel-node app-server",
+    "run-mockapi-server": "json-server --watch mockApi/db.json --port 3001",
+    "build-d": "webpack --mode development && npm run run-mockapi-server",
+    "build-p": "webpack --mode production"
   },
   "author": "Brad Traversy",
   "license": "MIT",
@@ -14,13 +17,22 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "bootstrap": "^3.2.0",
     "css-loader": "^0.28.11",
+    "faker": "^4.1.0",
+    "file-loader": "^1.1.11",
+    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^3.1.0",
+    "json-schema-faker": "^0.5.0-rc15",
+    "json-server": "^0.14.0",
+    "popper.js": "^1.14.3",
     "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
     "webpack": "^4.4.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"

@@ -19,7 +19,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      }
+      },
+        {
+            test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+            use: {loader: 'url-loader'}
+        }
     ]
   },
   plugins: [

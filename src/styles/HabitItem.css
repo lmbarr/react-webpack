@@ -1,0 +1,2 @@
+.habit:nth-child(even) {background: #fff}
+.habit:nth-child(odd) {background: #ccc}
