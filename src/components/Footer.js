@@ -4,7 +4,7 @@ import styles from '../styles/Footer.css';
 export default class Footer extends React.Component {
     render() {
         return (
-            <footer>
+            <footer className={styles.footer}>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-2">

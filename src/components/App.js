@@ -1,10 +1,8 @@
-import Header from './Header';
 import HabitItem from './HabitItem';
 import SocialNet from './SocialNet'
 import Footer from "./Footer";
 import Buttons from './Buttons'
 import React, { Component } from 'react';
-
 
 class App extends Component {
     constructor(props) {
@@ -29,7 +27,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        console.log("Inside componentDidMount");
+        // console.log("Inside componentDidMount");
         fetch('http://localhost:3001/habits')
             .then(res => res.json())
             .then(habits => this.setState({ habits }));
