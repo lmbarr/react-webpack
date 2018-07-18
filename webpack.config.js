@@ -1,14 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'index_bundle.js'
+    filename: '[name].[chunkhash].js'
   },
   module: {
     rules: [
+    {
+        test: /\.min.css$/, use: ["style-loader", "css-loader"]
+    },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -18,7 +22,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
+          exclude: /\.min.css$/,
+          use: [
             {
                 loader: "style-loader"
             },
@@ -40,9 +45,25 @@ module.exports = {
         }
     ]
   },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+      new HtmlWebpackPlugin({
+          filename: 'index2.html',
+          template: './src/index2.html',
+          chunks: ['vendors']
+      })
   ]
 };
